@@ -1,0 +1,90 @@
+[build]
+  publish = "."
+  # No build command needed - static site
+  ignore = "exit 0"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache, must-revalidate"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/css/style.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/js/app.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Redirect www to non-www
+[[redirects]]
+  from = "https://www.smartvisionias.netlify.app/*"
+  to = "https://smartvisionias.netlify.app/:splat"
+  status = 301
+  force = true
+
+# Pretty URLs Rewrites for SEO Clean Paths
+[[redirects]]
+  from = "/cctv-installation-qatar"
+  to = "/cctv-installation-qatar.html"
+  status = 200
+
+[[redirects]]
+  from = "/access-control-qatar"
+  to = "/access-control-systems-qatar.html"
+  status = 200
+
+[[redirects]]
+  from = "/access-control-systems-qatar"
+  to = "/access-control-systems-qatar.html"
+  status = 200
+
+[[redirects]]
+  from = "/face-recognition-qatar"
+  to = "/access-control-systems-qatar.html"
+  status = 200
+
+[[redirects]]
+  from = "/mep-services-qatar"
+  to = "/mep-services-qatar.html"
+  status = 200
+
+[[redirects]]
+  from = "/manpower-supply-qatar"
+  to = "/manpower-supply-qatar.html"
+  status = 200
+
+[[redirects]]
+  from = "/seo-services-qatar"
+  to = "/seo-services-qatar.html"
+  status = 200
+
+[[redirects]]
+  from = "/chatgpt-ai-solutions-qatar"
+  to = "/chatgpt-ai-solutions-qatar.html"
+  status = 200
+
+[[redirects]]
+  from = "/network-solutions-qatar"
+  to = "/it-solutions-qatar"
+  status = 301
+
+[[redirects]]
+  from = "/it-solutions-qatar"
+  to = "/it-solutions-qatar.html"
+  status = 200

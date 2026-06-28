@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+<defs>
+  <style>
+    @keyframes spinY {
+      0%   { transform: perspective(80px) rotateX(20deg) rotateY(0deg);   }
+      25%  { transform: perspective(80px) rotateX(20deg) rotateY(90deg);  }
+      50%  { transform: perspective(80px) rotateX(20deg) rotateY(180deg); }
+      75%  { transform: perspective(80px) rotateX(20deg) rotateY(270deg); }
+      100% { transform: perspective(80px) rotateX(20deg) rotateY(360deg); }
+    }
+    @keyframes glowS {
+      0%,49%  { opacity:1; }
+      50%,99% { opacity:0; }
+      100%    { opacity:1; }
+    }
+    @keyframes glowV {
+      0%,49%  { opacity:0; }
+      50%,99% { opacity:1; }
+      100%    { opacity:0; }
+    }
+    @keyframes borderCyan {
+      0%,24%,76%,100% { stroke:#22d3ee; stroke-opacity:1; }
+      25%,75%         { stroke:#22d3ee; stroke-opacity:0.1; }
+      50%             { stroke:#a855f7; stroke-opacity:1; }
+    }
+    @keyframes edgeCyan {
+      0%,24%,76%,100% { stroke:#22d3ee; }
+      25%,75%         { stroke:rgba(34,211,238,0.05); }
+      50%             { stroke:#a855f7; }
+    }
+    #cube-wrap {
+      transform-box: fill-box;
+      transform-origin: center center;
+      animation: spinY 2.4s cubic-bezier(0.4,0,0.6,1) infinite;
+    }
+    #letter-s { animation: glowS 2.4s linear infinite; }
+    #letter-v { animation: glowV 2.4s linear infinite; }
+    #face-sq  { animation: borderCyan 2.4s linear infinite; }
+    #edge-top { animation: edgeCyan 2.4s linear infinite; }
+    #edge-bot { animation: edgeCyan 2.4s linear infinite; }
+  </style>
+</defs>
+
+<!-- Outer dark circle background -->
+<circle cx="16" cy="16" r="15.5" fill="#080b13"/>
+
+<!-- Spinning cube group -->
+<g id="cube-wrap">
+
+  <!-- Top face of cube (horizontal top edge illusion) -->
+  <rect id="face-top-bar" x="5" y="5" width="22" height="3" rx="1"
+        fill="#131926" stroke="#22d3ee" stroke-width="0.6" opacity="0.7"/>
+
+  <!-- Bottom face bar -->
+  <rect id="face-bot-bar" x="5" y="24" width="22" height="3" rx="1"
+        fill="#0e0b18" stroke="#a855f7" stroke-width="0.6" opacity="0.7"/>
+
+  <!-- Left edge -->
+  <line id="edge-left" x1="5" y1="5" x2="5" y2="27" stroke="#22d3ee" stroke-width="0.8" opacity="0.5"/>
+  <!-- Right edge -->
+  <line id="edge-right" x1="27" y1="5" x2="27" y2="27" stroke="#a855f7" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- Main face square -->
+  <rect id="face-sq" x="5" y="5" width="22" height="22" rx="3"
+        fill="#0d111c" stroke="#22d3ee" stroke-width="1.4"/>
+
+  <!-- Top highlight line -->
+  <line id="edge-top" x1="5" y1="8" x2="27" y2="8" stroke="#22d3ee" stroke-width="0.4" opacity="0.5"/>
+  <!-- Bottom highlight line -->
+  <line id="edge-bot" x1="5" y1="24" x2="27" y2="24" stroke="#22d3ee" stroke-width="0.4" opacity="0.3"/>
+
+  <!-- S letter (front face) -->
+  <text id="letter-s"
+        x="16" y="22"
+        font-family="Arial Black, Arial, sans-serif"
+        font-weight="900"
+        font-size="15"
+        text-anchor="middle"
+        fill="#22d3ee"
+        filter="url(#gs)">S</text>
+
+  <!-- V letter (back face — visible at 180deg flip) -->
+  <text id="letter-v"
+        x="16" y="22"
+        font-family="Arial Black, Arial, sans-serif"
+        font-weight="900"
+        font-size="15"
+        text-anchor="middle"
+        fill="#a855f7"
+        filter="url(#gv)">V</text>
+
+</g>
+
+<defs>
+  <!-- Cyan glow filter for S -->
+  <filter id="gs" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <!-- Purple glow filter for V -->
+  <filter id="gv" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+</svg>
